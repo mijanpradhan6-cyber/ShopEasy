@@ -1,76 +1,1498 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ShopEasy - All Products</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShopEasy - Online Shopping</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f5f6fa;
+    color:#222;
+}
+
+header{
+    background:#111827;
+    color:white;
+    padding:16px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#f59e0b;
+}
+
+nav{
+    display:flex;
+    gap:20px;
+    align-items:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    cursor:pointer;
+    font-size:15px;
+}
+
+nav a:hover{
+    color:#f59e0b;
+}
+
+.cart-btn{
+    background:#f59e0b;
+    color:#111;
+    padding:9px 15px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.hero{
+    min-height:430px;
+    display:flex;
+    align-items:center;
+    padding:60px 8%;
+    background:linear-gradient(135deg,#111827,#374151);
+    color:white;
+}
+
+.hero-content{
+    max-width:650px;
+}
+
+.hero h1{
+    font-size:48px;
+    margin-bottom:18px;
+}
+
+.hero p{
+    font-size:18px;
+    margin-bottom:25px;
+    color:#d1d5db;
+}
+
+.btn{
+    border:none;
+    background:#f59e0b;
+    padding:13px 22px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.btn:hover{
+    opacity:.85;
+}
+
+section{
+    padding:50px 7%;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:30px;
+    font-size:30px;
+}
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:18px;
+}
+
+.category{
+    background:white;
+    padding:25px 15px;
+    text-align:center;
+    border-radius:12px;
+    box-shadow:0 3px 12px #0001;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.category:hover{
+    transform:translateY(-5px);
+}
+
+.category .icon{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.controls{
+    display:flex;
+    gap:12px;
+    margin-bottom:25px;
+    flex-wrap:wrap;
+}
+
+.search{
+    flex:1;
+    min-width:220px;
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+select{
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+}
+
+.card{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 3px 15px #0001;
+    transition:.2s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.product-img{
+    height:210px;
+    background:#eef2f7;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:85px;
+}
+
+.card-content{
+    padding:17px;
+}
+
+.card h3{
+    margin-bottom:8px;
+}
+
+.category-text{
+    color:#777;
+    font-size:13px;
+}
+
+.price{
+    font-size:20px;
+    font-weight:bold;
+    margin:12px 0;
+}
+
+.rating{
+    color:#f59e0b;
+    margin-bottom:12px;
+}
+
+.card-buttons{
+    display:flex;
+    gap:8px;
+}
+
+.card-buttons button{
+    flex:1;
+}
+
+.secondary{
+    background:#e5e7eb;
+    color:#111;
+}
+
+.about{
+    background:white;
+    text-align:center;
+}
+
+.about p{
+    max-width:800px;
+    margin:auto;
+    line-height:1.7;
+    color:#555;
+}
+
+.contact-box{
+    max-width:600px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 3px 15px #0001;
+}
+
+.form-input{
+    width:100%;
+    padding:13px;
+    margin:8px 0 14px;
+    border:1px solid #ddd;
+    border-radius:7px;
+}
+
+textarea{
+    resize:vertical;
+    min-height:100px;
+}
+
+.admin{
+    background:#111827;
+    color:white;
+}
+
+.admin-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:30px;
+}
+
+.stat{
+    background:#1f2937;
+    padding:22px;
+    border-radius:10px;
+}
+
+.stat h3{
+    color:#aaa;
+    font-size:14px;
+}
+
+.stat p{
+    font-size:28px;
+    margin-top:8px;
+    font-weight:bold;
+}
+
+.admin-form{
+    background:white;
+    color:#111;
+    padding:25px;
+    border-radius:12px;
+}
+
+.admin-form h3{
+    margin-bottom:15px;
+}
+
+.admin-products{
+    margin-top:25px;
+}
+
+.admin-product{
+    background:#f3f4f6;
+    color:#111;
+    padding:14px;
+    margin:8px 0;
+    border-radius:8px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:#0008;
+    z-index:2000;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.modal-box{
+    background:white;
+    width:100%;
+    max-width:550px;
+    max-height:90vh;
+    overflow:auto;
+    padding:25px;
+    border-radius:14px;
+}
+
+.close{
+    float:right;
+    cursor:pointer;
+    font-size:25px;
+}
+
+.cart-item{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    border-bottom:1px solid #ddd;
+    padding:15px 0;
+}
+
+.cart-icon{
+    font-size:40px;
+}
+
+.qty{
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.qty button{
+    border:none;
+    padding:5px 10px;
+    cursor:pointer;
+}
+
+.total{
+    font-size:22px;
+    font-weight:bold;
+    margin:20px 0;
+}
+
+footer{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+.hidden{
+    display:none;
+}
+
+@media(max-width:900px){
+    .products{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .categories{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .admin-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+    header{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    nav{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero h1{
+        font-size:35px;
+    }
+
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .categories{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .admin-grid{
+        grid-template-columns:1fr;
+    }
+
+    section{
+        padding:35px 5%;
+    }
+}
+</style>
 </head>
+
 <body>
+
 <header>
-  <div class="logo">Shop<span>Easy</span></div>
-  <nav>
-    <a href="#home">Home</a><a href="#products">Products</a>
-    <a href="#about">About</a><a href="#contact">Contact</a>
-  </nav>
-  <button class="cart-btn" onclick="toggleCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+    <div class="logo">🛍️ Shop<span>Easy</span></div>
+
+    <nav>
+        <a onclick="goHome()">Home</a>
+        <a onclick="showProducts()">Products</a>
+        <a onclick="showAbout()">About</a>
+        <a onclick="showContact()">Contact</a>
+        <span class="cart-btn" onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>)</span>
+    </nav>
 </header>
 
-<section class="hero" id="home">
-  <div><h1>Shop Everything in One Place</h1>
-  <p>Clothes, Shoes, Electronics, Grocery and Accessories.</p>
-  <a class="primary" href="#products">Shop Now</a></div>
+<!-- HOME -->
+
+<div id="homePage">
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Shop Everything in One Place</h1>
+        <p>
+            Discover clothes, shoes, electronics, grocery and accessories
+            at ShopEasy.
+        </p>
+        <button class="btn" onclick="showProducts()">Shop Now</button>
+    </div>
 </section>
 
-<section class="controls">
-  <input id="search" oninput="renderProducts()" placeholder="Search products...">
-  <select id="category" onchange="renderProducts()">
-    <option value="All">All Categories</option>
-    <option>Clothes</option><option>Shoes</option><option>Electronics</option>
-    <option>Grocery</option><option>Accessories</option>
-  </select>
+<section>
+    <h2 class="title">Shop By Category</h2>
+
+    <div class="categories">
+
+        <div class="category" onclick="filterCategory('Clothes')">
+            <div class="icon">👕</div>
+            <b>Clothes</b>
+        </div>
+
+        <div class="category" onclick="filterCategory('Shoes')">
+            <div class="icon">👟</div>
+            <b>Shoes</b>
+        </div>
+
+        <div class="category" onclick="filterCategory('Electronics')">
+            <div class="icon">📱</div>
+            <b>Electronics</b>
+        </div>
+
+        <div class="category" onclick="filterCategory('Grocery')">
+            <div class="icon">🛒</div>
+            <b>Grocery</b>
+        </div>
+
+        <div class="category" onclick="filterCategory('Accessories')">
+            <div class="icon">⌚</div>
+            <b>Accessories</b>
+        </div>
+
+    </div>
 </section>
 
-<section class="products-section" id="products">
-  <h2>Our Products</h2>
-  <div class="products" id="productList"></div>
+<section>
+    <h2 class="title">Featured Products</h2>
+    <div id="featuredProducts" class="products"></div>
 </section>
 
-<section class="admin" id="admin">
-  <h2>Admin Panel</h2>
-
-  <input type="text" id="pname" placeholder="Product Name">
-  <input type="text" id="pcategory" placeholder="Category">
-  <input type="number" id="pprice" placeholder="Price">
-  <input type="text" id="pemoji" placeholder="Emoji">
-
-  <button onclick="addProduct(
-    document.getElementById('pname').value,
-    document.getElementById('pcategory').value,
-    document.getElementById('pprice').value,
-    document.getElementById('pemoji').value
-  ); showAdminProducts();">
-    Add Product
-  </button>
-
-  <h3>Manage Products</h3>
-  <div id="adminProducts"></div>
-</section>
-
-<section class="info" id="about"><h2>About ShopEasy</h2>
-<p>ShopEasy is a college e-commerce field project. It provides different categories of products in one simple and user-friendly website.</p></section>
-
-<section class="info" id="contact"><h2>Contact Us</h2>
-<p>Email: shopeasy@example.com | Phone: +91 98765 43210</p></section>
-
-<div class="cart-panel" id="cartPanel">
-  <div class="cart-head"><h2>Your Cart</h2><button onclick="toggleCart()">✕</button></div>
-  <div id="cartItems"></div>
-  <h3>Total: ₹<span id="total">0</span></h3>
-  <button class="checkout" onclick="checkout()">Place Order</button>
 </div>
 
-<footer>© 2026 ShopEasy | College Field Project</footer>
-<script src="script.js"></script>
+<!-- PRODUCTS -->
+
+<section id="productsPage" class="hidden">
+
+<h2 class="title">Our Products</h2>
+
+<div class="controls">
+
+<input
+    class="search"
+    id="searchInput"
+    placeholder="🔎 Search products..."
+    oninput="displayProducts()"
+>
+
+<select id="categoryFilter" onchange="displayProducts()">
+    <option value="All">All Categories</option>
+    <option>Clothes</option>
+    <option>Shoes</option>
+    <option>Electronics</option>
+    <option>Grocery</option>
+    <option>Accessories</option>
+</select>
+
+<select id="sortFilter" onchange="displayProducts()">
+    <option value="default">Sort Products</option>
+    <option value="low">Price: Low to High</option>
+    <option value="high">Price: High to Low</option>
+</select>
+
+</div>
+
+<div id="productsList" class="products"></div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="aboutPage" class="about hidden">
+
+<h2 class="title">About ShopEasy</h2>
+
+<p>
+ShopEasy is a college e-commerce field project.
+It provides different categories of products in one simple and
+user-friendly website. Customers can browse products, search products,
+add products to cart and place orders through the website.
+</p>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contactPage" class="hidden">
+
+<h2 class="title">Contact Us</h2>
+
+<div class="contact-box">
+
+<p><b>Email:</b> shopeasy@example.com</p>
+<p style="margin:10px 0 20px;">
+<b>Phone:</b> +91 98765 43210
+</p>
+
+<input class="form-input" placeholder="Your Name">
+<input class="form-input" placeholder="Your Email">
+<textarea class="form-input" placeholder="Your Message"></textarea>
+
+<button class="btn" onclick="sendMessage()">Send Message</button>
+
+</div>
+
+</section>
+
+<!-- ADMIN -->
+
+<section class="admin">
+
+<h2 class="title">Admin Dashboard</h2>
+
+<div class="admin-grid">
+
+<div class="stat">
+<h3>Total Products</h3>
+<p id="totalProducts">0</p>
+</div>
+
+<div class="stat">
+<h3>Total Orders</h3>
+<p id="totalOrders">0</p>
+</div>
+
+<div class="stat">
+<h3>Total Customers</h3>
+<p id="totalCustomers">0</p>
+</div>
+
+<div class="stat">
+<h3>Total Sales</h3>
+<p id="totalSales">₹0</p>
+</div>
+
+</div>
+
+<div class="admin-form">
+
+<h3>➕ Add New Product</h3>
+
+<input class="form-input" id="adminName" placeholder="Product Name">
+
+<select class="form-input" id="adminCategory">
+<option>Clothes</option>
+<option>Shoes</option>
+<option>Electronics</option>
+<option>Grocery</option>
+<option>Accessories</option>
+</select>
+
+<input class="form-input" id="adminPrice" type="number" placeholder="Price">
+
+<input class="form-input" id="adminEmoji" placeholder="Product Emoji">
+
+<button class="btn" onclick="addProduct()">Add Product</button>
+
+<div class="admin-products">
+
+<h3>Manage Products</h3>
+
+<div id="manageProducts"></div>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 ShopEasy | College E-Commerce Field Project
+<br><br>
+Shop Everything in One Place
+</footer>
+
+
+<!-- CART MODAL -->
+
+<div class="modal" id="cartModal">
+
+<div class="modal-box">
+
+<span class="close" onclick="closeCart()">×</span>
+
+<h2>🛒 Your Cart</h2>
+
+<div id="cartItems"></div>
+
+<div class="total">
+Total: ₹<span id="cartTotal">0</span>
+</div>
+
+<button class="btn" onclick="checkout()">Proceed to Checkout</button>
+
+</div>
+
+</div>
+
+
+<!-- PRODUCT MODAL -->
+
+<div class="modal" id="productModal">
+
+<div class="modal-box">
+
+<span class="close" onclick="closeProduct()">×</span>
+
+<div id="productDetails"></div>
+
+</div>
+
+</div>
+
+
+<!-- CHECKOUT MODAL -->
+
+<div class="modal" id="checkoutModal">
+
+<div class="modal-box">
+
+<span class="close" onclick="closeCheckout()">×</span>
+
+<h2>💳 Checkout</h2>
+
+<input class="form-input" id="customerName" placeholder="Full Name">
+
+<input class="form-input" id="customerPhone" placeholder="Mobile Number">
+
+<input class="form-input" id="customerEmail" placeholder="Email">
+
+<input class="form-input" id="customerAddress" placeholder="Address">
+
+<input class="form-input" id="customerCity" placeholder="City">
+
+<input class="form-input" id="customerPin" placeholder="Pincode">
+
+<select class="form-input" id="paymentMethod">
+<option>Cash on Delivery</option>
+<option>UPI</option>
+<option>Card</option>
+</select>
+
+<button class="btn" onclick="placeOrder()">Place Order</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+let defaultProducts = [
+
+{
+id:1,
+name:"Classic T-Shirt",
+category:"Clothes",
+price:499,
+emoji:"👕",
+rating:5,
+description:"Comfortable cotton T-shirt for everyday use."
+},
+
+{
+id:2,
+name:"Running Shoes",
+category:"Shoes",
+price:1499,
+emoji:"👟",
+rating:4,
+description:"Lightweight running shoes with comfortable sole."
+},
+
+{
+id:3,
+name:"Smartphone",
+category:"Electronics",
+price:14999,
+emoji:"📱",
+rating:5,
+description:"Modern smartphone with excellent performance."
+},
+
+{
+id:4,
+name:"Wireless Headphones",
+category:"Electronics",
+price:1999,
+emoji:"🎧",
+rating:4,
+description:"Wireless headphones with clear sound."
+},
+
+{
+id:5,
+name:"Fresh Grocery Pack",
+category:"Grocery",
+price:799,
+emoji:"🥦",
+rating:4,
+description:"Daily grocery essentials for your home."
+},
+
+{
+id:6,
+name:"Smart Watch",
+category:"Accessories",
+price:2499,
+emoji:"⌚",
+rating:5,
+description:"Smart watch with modern features."
+},
+
+{
+id:7,
+name:"Denim Jeans",
+category:"Clothes",
+price:999,
+emoji:"👖",
+rating:4,
+description:"Stylish denim jeans for casual wear."
+},
+
+{
+id:8,
+name:"Travel Backpack",
+category:"Accessories",
+price:1299,
+emoji:"🎒",
+rating:5,
+description:"Strong and spacious backpack for travel."
+}
+
+];
+
+
+let products =
+JSON.parse(localStorage.getItem("shopEasyProducts")) || defaultProducts;
+
+let cart =
+JSON.parse(localStorage.getItem("shopEasyCart")) || [];
+
+let orders =
+JSON.parse(localStorage.getItem("shopEasyOrders")) || [];
+
+
+function saveData(){
+
+localStorage.setItem(
+"shopEasyProducts",
+JSON.stringify(products)
+);
+
+localStorage.setItem(
+"shopEasyCart",
+JSON.stringify(cart)
+);
+
+localStorage.setItem(
+"shopEasyOrders",
+JSON.stringify(orders)
+);
+
+}
+
+
+function goHome(){
+
+hideAllPages();
+
+document.getElementById("homePage")
+.classList.remove("hidden");
+
+window.scrollTo(0,0);
+
+}
+
+
+function showProducts(){
+
+hideAllPages();
+
+document.getElementById("productsPage")
+.classList.remove("hidden");
+
+displayProducts();
+
+window.scrollTo(0,0);
+
+}
+
+
+function showAbout(){
+
+hideAllPages();
+
+document.getElementById("aboutPage")
+.classList.remove("hidden");
+
+window.scrollTo(0,0);
+
+}
+
+
+function showContact(){
+
+hideAllPages();
+
+document.getElementById("contactPage")
+.classList.remove("hidden");
+
+window.scrollTo(0,0);
+
+}
+
+
+function hideAllPages(){
+
+document.getElementById("homePage")
+.classList.add("hidden");
+
+document.getElementById("productsPage")
+.classList.add("hidden");
+
+document.getElementById("aboutPage")
+.classList.add("hidden");
+
+document.getElementById("contactPage")
+.classList.add("hidden");
+
+}
+
+
+function filterCategory(category){
+
+showProducts();
+
+document.getElementById("categoryFilter").value =
+category;
+
+displayProducts();
+
+}
+
+
+function productCard(product){
+
+return `
+
+<div class="card">
+
+<div class="product-img">
+${product.emoji}
+</div>
+
+<div class="card-content">
+
+<h3>${product.name}</h3>
+
+<div class="category-text">
+${product.category}
+</div>
+
+<div class="rating">
+${"★".repeat(product.rating)}
+${"☆".repeat(5-product.rating)}
+</div>
+
+<div class="price">
+₹${product.price}
+</div>
+
+<div class="card-buttons">
+
+<button
+class="btn secondary"
+onclick="viewProduct(${product.id})">
+View
+</button>
+
+<button
+class="btn"
+onclick="addToCart(${product.id})">
+Add to Cart
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+function displayProducts(){
+
+let search =
+document.getElementById("searchInput").value.toLowerCase();
+
+let category =
+document.getElementById("categoryFilter").value;
+
+let sort =
+document.getElementById("sortFilter").value;
+
+let list =
+products.filter(p =>
+
+p.name.toLowerCase().includes(search)
+&&
+(category==="All" || p.category===category)
+
+);
+
+
+if(sort==="low"){
+
+list.sort((a,b)=>a.price-b.price);
+
+}
+
+if(sort==="high"){
+
+list.sort((a,b)=>b.price-a.price);
+
+}
+
+
+document.getElementById("productsList")
+.innerHTML =
+list.length
+?
+list.map(productCard).join("")
+:
+"<p>No products found.</p>";
+
+}
+
+
+function displayFeatured(){
+
+document.getElementById("featuredProducts")
+.innerHTML =
+products.slice(0,4)
+.map(productCard)
+.join("");
+
+}
+
+
+function addToCart(id){
+
+let product =
+products.find(p=>p.id===id);
+
+let existing =
+cart.find(item=>item.id===id);
+
+if(existing){
+
+existing.qty++;
+
+}else{
+
+cart.push({
+
+id:product.id,
+name:product.name,
+price:product.price,
+emoji:product.emoji,
+qty:1
+
+});
+
+}
+
+saveData();
+
+updateCart();
+
+alert("Product added to cart!");
+
+}
+
+
+function updateCart(){
+
+document.getElementById("cartCount")
+.innerText =
+cart.reduce((sum,item)=>sum+item.qty,0);
+
+}
+
+
+function openCart(){
+
+document.getElementById("cartModal")
+.style.display="flex";
+
+displayCart();
+
+}
+
+
+function closeCart(){
+
+document.getElementById("cartModal")
+.style.display="none";
+
+}
+
+
+function displayCart(){
+
+let container =
+document.getElementById("cartItems");
+
+if(cart.length===0){
+
+container.innerHTML=
+"<p style='margin-top:20px'>Your cart is empty.</p>";
+
+document.getElementById("cartTotal")
+.innerText=0;
+
+return;
+
+}
+
+
+let total=0;
+
+container.innerHTML =
+cart.map(item=>{
+
+total += item.price*item.qty;
+
+return `
+
+<div class="cart-item">
+
+<div class="cart-icon">
+${item.emoji}
+</div>
+
+<div style="flex:1">
+
+<b>${item.name}</b>
+
+<p>₹${item.price}</p>
+
+<div class="qty">
+
+<button onclick="changeQty(${item.id},-1)">−</button>
+
+<span>${item.qty}</span>
+
+<button onclick="changeQty(${item.id},1)">+</button>
+
+</div>
+
+</div>
+
+<button
+onclick="removeFromCart(${item.id})">
+❌
+</button>
+
+</div>
+
+`;
+
+}).join("");
+
+
+document.getElementById("cartTotal")
+.innerText=total;
+
+}
+
+
+function changeQty(id,change){
+
+let item =
+cart.find(x=>x.id===id);
+
+if(!item) return;
+
+item.qty += change;
+
+if(item.qty<=0){
+
+cart =
+cart.filter(x=>x.id!==id);
+
+}
+
+saveData();
+
+updateCart();
+
+displayCart();
+
+}
+
+
+function removeFromCart(id){
+
+cart =
+cart.filter(x=>x.id!==id);
+
+saveData();
+
+updateCart();
+
+displayCart();
+
+}
+
+
+function viewProduct(id){
+
+let product =
+products.find(p=>p.id===id);
+
+document.getElementById("productDetails")
+.innerHTML=`
+
+<div style="text-align:center">
+
+<div style="font-size:100px">
+${product.emoji}
+</div>
+
+<h2>${product.name}</h2>
+
+<p style="color:#777">
+${product.category}
+</p>
+
+<h2 style="margin:15px 0">
+₹${product.price}
+</h2>
+
+<div class="rating">
+${"★".repeat(product.rating)}
+${"☆".repeat(5-product.rating)}
+</div>
+
+<p style="line-height:1.6;margin:15px 0">
+${product.description}
+</p>
+
+<button
+class="btn"
+onclick="addToCart(${product.id});closeProduct()">
+Add to Cart
+</button>
+
+</div>
+
+`;
+
+document.getElementById("productModal")
+.style.display="flex";
+
+}
+
+
+function closeProduct(){
+
+document.getElementById("productModal")
+.style.display="none";
+
+}
+
+
+function checkout(){
+
+if(cart.length===0){
+
+alert("Your cart is empty.");
+
+return;
+
+}
+
+closeCart();
+
+document.getElementById("checkoutModal")
+.style.display="flex";
+
+}
+
+
+function closeCheckout(){
+
+document.getElementById("checkoutModal")
+.style.display="none";
+
+}
+
+
+function placeOrder(){
+
+let name =
+document.getElementById("customerName").value;
+
+let phone =
+document.getElementById("customerPhone").value;
+
+let address =
+document.getElementById("customerAddress").value;
+
+if(!name || !phone || !address){
+
+alert("Please fill required details.");
+
+return;
+
+}
+
+
+let total =
+cart.reduce((sum,item)=>
+sum+item.price*item.qty,0);
+
+
+let orderId =
+"SE"+Date.now().toString().slice(-6);
+
+
+orders.push({
+
+id:orderId,
+customer:name,
+phone:phone,
+address:address,
+items:[...cart],
+total:total,
+date:new Date().toLocaleString(),
+status:"Placed"
+
+});
+
+
+cart=[];
+
+saveData();
+
+updateCart();
+
+updateAdmin();
+
+
+closeCheckout();
+
+
+alert(
+"Order placed successfully!\n\nOrder ID: "
++
+orderId
+);
+
+
+}
+
+
+function addProduct(){
+
+let name =
+document.getElementById("adminName").value;
+
+let category =
+document.getElementById("adminCategory").value;
+
+let price =
+Number(document.getElementById("adminPrice").value);
+
+let emoji =
+document.getElementById("adminEmoji").value || "🛍️";
+
+
+if(!name || !price){
+
+alert("Enter product name and price.");
+
+return;
+
+}
+
+
+products.push({
+
+id:Date.now(),
+name:name,
+category:category,
+price:price,
+emoji:emoji,
+rating:5,
+description:
+"New product available at ShopEasy."
+
+});
+
+
+saveData();
+
+document.getElementById("adminName").value="";
+document.getElementById("adminPrice").value="";
+document.getElementById("adminEmoji").value="";
+
+displayProducts();
+
+displayFeatured();
+
+displayManageProducts();
+
+updateAdmin();
+
+alert("Product added successfully!");
+
+}
+
+
+function deleteProduct(id){
+
+if(!confirm("Delete this product?")) return;
+
+products =
+products.filter(p=>p.id!==id);
+
+saveData();
+
+displayProducts();
+
+displayFeatured();
+
+displayManageProducts();
+
+updateAdmin();
+
+}
+
+
+function displayManageProducts(){
+
+document.getElementById("manageProducts")
+.innerHTML = products.map(p=>`
+
+<div class="admin-product">
+
+<div>
+
+<b>${p.name}</b>
+
+<br>
+
+<small>
+${p.category} | ₹${p.price}
+</small>
+
+</div>
+
+<button
+class="btn"
+onclick="deleteProduct(${p.id})">
+Delete
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+
+function updateAdmin(){
+
+document.getElementById("totalProducts")
+.innerText=products.length;
+
+document.getElementById("totalOrders")
+.innerText=orders.length;
+
+let sales =
+orders.reduce((sum,o)=>sum+o.total,0);
+
+document.getElementById("totalSales")
+.innerText="₹"+sales;
+
+let customers =
+new Set(orders.map(o=>o.phone)).size;
+
+document.getElementById("totalCustomers")
+.innerText=customers;
+
+}
+
+
+function sendMessage(){
+
+alert("Thank you! Your message has been submitted.");
+
+}
+
+
+function init(){
+
+displayFeatured();
+
+displayProducts();
+
+displayManageProducts();
+
+updateCart();
+
+updateAdmin();
+
+}
+
+
+init();
+
+</script>
+
 </body>
 </html>
